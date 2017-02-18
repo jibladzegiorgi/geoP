@@ -1,19 +1,19 @@
 package com.idevelopers.giorgi.geopetrol.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.idevelopers.giorgi.geopetrol.R;
 import com.idevelopers.giorgi.geopetrol.adapter.PetrolAdapter;
+import com.idevelopers.giorgi.geopetrol.fragments.LoadingFragment;
 import com.idevelopers.giorgi.geopetrol.modelclass.PetrolModel;
 
 import org.json.JSONArray;
@@ -129,6 +129,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void makeRequest() {
+        Fragment fragment=new LoadingFragment();
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.ciferblatis_modzraoba,0,0,0)
+                .add(R.id.fragment_cont,fragment).commit();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://tbil.info/")
                 .addConverterFactory(ScalarsConverterFactory.create())

@@ -8,6 +8,11 @@
     android:background="#000000"
     android:paddingTop="35dp">
 
+    <FrameLayout
+        android:id="@+id/fragment_cont"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <LinearLayout
         android:id="@+id/humburger1"
         android:layout_width="@dimen/humburger_widht"
