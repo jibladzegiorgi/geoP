@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
                 }
                 calculatorFragment = new CalculatorFragment();
                 getSupportFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_from_left_to_right,0,0,R.anim.slide_from_right_to_left)
+                        .setCustomAnimations(R.anim.slide_from_left_to_right, 0, 0, R.anim.slide_from_right_to_left)
                         .addToBackStack("tag").add(R.id.fragment_cont, calculatorFragment).commit();
                 fragment_cont.bringToFront();
                 break;
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
                 break;
         }
     }
-//hgghgj
+
     private boolean checkConnection() {
         return ConnectivityReceiver.isConnected();
 
