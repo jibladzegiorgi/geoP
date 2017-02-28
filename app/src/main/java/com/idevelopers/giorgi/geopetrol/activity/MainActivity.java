@@ -1,19 +1,26 @@
 package com.idevelopers.giorgi.geopetrol.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.idevelopers.giorgi.geopetrol.MyApplication;
 import com.idevelopers.giorgi.geopetrol.R;
 import com.idevelopers.giorgi.geopetrol.adapter.PetrolAdapter;
+import com.idevelopers.giorgi.geopetrol.fragments.CalculatorFragment;
+import com.idevelopers.giorgi.geopetrol.fragments.InternetFragment;
 import com.idevelopers.giorgi.geopetrol.fragments.LoadingFragment;
+import com.idevelopers.giorgi.geopetrol.internetConnection.ConnectivityReceiver;
 import com.idevelopers.giorgi.geopetrol.modelclass.PetrolModel;
 
 import org.json.JSONArray;
@@ -27,12 +34,13 @@ import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     SlidingPaneLayout slidingPaneLayout;
     List petrolModelList;
     LinearLayout linearLayout;
@@ -49,12 +57,29 @@ public class MainActivity extends AppCompatActivity {
     PetrolModel model;
     RelativeLayout mainRelativ, touchRelativ;
     RecyclerView recyclerView;
+    Fragment fragment;
+    InternetFragment internetFragment;
+    FragmentManager fragmentManager;
     PetrolAdapter petrolAdapter;
+    private ImageView main_activity_image;
+    private ImageView calculator_image;
+    private ImageView profile_image;
+    private ImageView languge_image;
+    private RelativeLayout main_relativ;
+    private SlidingPaneLayout sliding_menu;
+    private RelativeLayout touch_relativ;
+    private CalculatorFragment calculatorFragment;
+    private RelativeLayout fragment_cont;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initView();
+
+        internetFragment = new InternetFragment();
+        fragmentManager = getSupportFragmentManager();
+        fragment = new LoadingFragment();
 
         mainRelativ = (RelativeLayout) findViewById(R.id.main_relativ);
         touchRelativ = (RelativeLayout) findViewById(R.id.touch_relativ);
@@ -95,19 +120,8 @@ public class MainActivity extends AppCompatActivity {
     SlidingPaneLayout.PanelSlideListener slidingPanel = new SlidingPaneLayout.PanelSlideListener() {
         @Override
         public void onPanelSlide(View panel, float slideOffset) {
-            panel.setAlpha((float) (1-(slideOffset/1.5)));
+            panel.setAlpha((float) (1 - (slideOffset / 1.5)));
             linearLayout.setVisibility(View.VISIBLE);
-
-//            if (firstSlideOffset < slideOffset) {
-//                linearLayout.setVisibility(View.VISIBLE);
-//                returnSlideOffSet = slideOffset;
-//                firstSlideOffset = slideOffset;
-//            } else if (returnSlideOffSet > slideOffset) {
-//                linearLayout.setVisibility(View.INVISIBLE);
-//            }else {
-//                firstSlideOffset = 0;
-//                returnSlideOffSet=0;
-//            }
         }
 
         @Override
@@ -121,6 +135,55 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    public void slidingPanelImageClick(View view) {
+        switch (view.getId()) {
+            case R.id.main_activity_image:
+                break;
+            case R.id.calculator_image:
+                if (slidingPaneLayout.isOpen()) {
+                    slidingPaneLayout.closePane();
+                }
+                calculatorFragment = new CalculatorFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_from_left_to_right,0,0,R.anim.slide_from_right_to_left)
+                        .addToBackStack("tag").add(R.id.fragment_cont, calculatorFragment).commit();
+                fragment_cont.bringToFront();
+                break;
+            case R.id.profile_image:
+                break;
+            case R.id.languge_image:
+                break;
+        }
+    }
+//hgghgj
+    private boolean checkConnection() {
+        return ConnectivityReceiver.isConnected();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MyApplication.getInstance().setConnectivityListener(this);
+    }
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+
+    }
+
+    private void initView() {
+        main_activity_image = (ImageView) findViewById(R.id.main_activity_image);
+        calculator_image = (ImageView) findViewById(R.id.calculator_image);
+        profile_image = (ImageView) findViewById(R.id.profile_image);
+        languge_image = (ImageView) findViewById(R.id.languge_image);
+        main_relativ = (RelativeLayout) findViewById(R.id.main_relativ);
+        sliding_menu = (SlidingPaneLayout) findViewById(R.id.sliding_menu);
+        touch_relativ = (RelativeLayout) findViewById(R.id.touch_relativ);
+        fragment_cont = (RelativeLayout) findViewById(R.id.fragment_cont);
+        //fragment_cont.setOnClickListener(this);
+    }
+
 
     public interface RetrofitService {
         @GET("/Home/Tarifebi")
@@ -129,52 +192,62 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void makeRequest() {
-        Fragment fragment=new LoadingFragment();
-        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.ciferblatis_modzraoba,0,0,0)
-                .add(R.id.fragment_cont,fragment).commit();
+        if (!checkConnection()) {
+            internetFragment.show(fragmentManager, "fragment");
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.ciferblatis_modzraoba, 0, 0, 0)
+                            .add(R.id.fragment_cont_, fragment).commit();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://tbil.info/")
-                .addConverterFactory(ScalarsConverterFactory.create())
-                // add other factories here, if needed.
-                .build();
-        final RetrofitService service = retrofit.create(RetrofitService.class);
-        Call<ResponseBody> result = service.listRepos("All");
-        result.enqueue(new Callback<ResponseBody>() {
-                           @Override
-                           public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
-                               try {
-                                   String resp = response.body().string().replace("\\", "");
-                                   StringBuilder st = new StringBuilder(resp).deleteCharAt(0);
-                                   st.deleteCharAt(st.length() - 1);
-                                   JSONObject jsonObject = new JSONObject(String.valueOf(st));
-                                   JSONArray jsonArray = jsonObject.getJSONArray("Fuel");
-                                   for (int i = 0; i < jsonArray.length(); i++) {
-                                       JSONObject c = jsonArray.getJSONObject(i);
-                                       int id = c.getInt("Id");
-                                       String company = c.getString("Company");
-                                       String product = c.getString("Product");
-                                       double price = c.getDouble("Price");
-                                       String updated = c.getString("Updated");
-                                       String category = c.getString("Category");
-                                       PetrolModel model = new PetrolModel(id, company, product, price, updated, category);
-                                       petrolModelList.add(model);
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl("https://tbil.info/")
+                            .addConverterFactory(ScalarsConverterFactory.create())
+                            // add other factories here, if needed.
+                            .build();
+                    final RetrofitService service = retrofit.create(RetrofitService.class);
+                    Call<ResponseBody> result = service.listRepos("All");
+                    result.enqueue(new Callback<ResponseBody>() {
+                                       @Override
+                                       public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                           if (fragment != null)
+                                               getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                                           try {
+                                               String resp = response.body().string().replace("\\", "");
+                                               StringBuilder st = new StringBuilder(resp).deleteCharAt(0);
+                                               st.deleteCharAt(st.length() - 1);
+                                               JSONObject jsonObject = new JSONObject(String.valueOf(st));
+                                               JSONArray jsonArray = jsonObject.getJSONArray("Fuel");
+                                               for (int i = 0; i < jsonArray.length(); i++) {
+                                                   JSONObject c = jsonArray.getJSONObject(i);
+                                                   int id = c.getInt("Id");
+                                                   String company = c.getString("Company");
+                                                   String product = c.getString("Product");
+                                                   double price = c.getDouble("Price");
+                                                   String updated = c.getString("Updated");
+                                                   String category = c.getString("Category");
+                                                   PetrolModel model = new PetrolModel(id, company, product, price, updated, category);
+                                                   petrolModelList.add(model);
+                                               }
+                                               fillListbyCompany(petrolModelList);
+                                               //test();
+
+                                           } catch (JSONException | IOException e) {
+                                               e.printStackTrace();
+                                           }
+                                       }
+
+                                       @Override
+                                       public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                                       }
                                    }
-                                   fillListbyCompany(petrolModelList);
-                                   //test();
 
-                               } catch (JSONException | IOException e) {
-                                   e.printStackTrace();
-                               }
-                           }
-
-                           @Override
-                           public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                           }
-                       }
-
-        );
+                    );
+                }
+            }, 500);
+        }
     }
 
 
@@ -242,5 +315,14 @@ public class MainActivity extends AppCompatActivity {
         allList.add(gulfList);
         petrolAdapter = new PetrolAdapter(allList, this);
         recyclerView.setAdapter(petrolAdapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+        } else {
+            this.finish();
+        }
     }
 }
