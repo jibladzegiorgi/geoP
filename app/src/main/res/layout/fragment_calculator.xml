@@ -6,32 +6,102 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/calculator_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/backgraund_main"
-        android:orientation="horizontal"
-        app:layout_heightPercent="50%" />
+    <!--<android.support.v4.widget.SlidingPaneLayout-->
+        <!--android:id="@+id/sliding_menu"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@id/humburger"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--tools:context="com.idevelopers.giorgi.geopetrol.activity.MainActivity">-->
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="#000000"
-        app:layout_heightPercent="50%">
+        <!--<android.support.percent.PercentRelativeLayout-->
+            <!--android:id="@+id/activity_main"-->
+            <!--android:paddingTop="55dp"-->
+            <!--android:layout_width="130dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="#000000">-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/main_activity_image"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:onClick="slidingPanelImageClick"-->
+                <!--android:src="@drawable/main_image"-->
+                <!--app:layout_heightPercent="13%"-->
+                <!--app:layout_widthPercent="53%" />-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/calculator_image"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/main_activity_image"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:onClick="slidingPanelImageClick"-->
+                <!--android:src="@drawable/calculator"-->
+                <!--app:layout_heightPercent="13%"-->
+                <!--app:layout_widthPercent="53%" />-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/profile_image"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@id/calculator_image"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:onClick="slidingPanelImageClick"-->
+                <!--android:src="@drawable/profile_image"-->
+                <!--app:layout_heightPercent="13%"-->
+                <!--app:layout_widthPercent="53%" />-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/languge_image"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@id/profile_image"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:onClick="slidingPanelImageClick"-->
+                <!--android:src="@drawable/geoimage"-->
+                <!--app:layout_heightPercent="13%"-->
+                <!--app:layout_widthPercent="53%" />-->
+
+        <!--</android.support.percent.PercentRelativeLayout>-->
 
 
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/main_relativ"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/calculator_image1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/backgraund_main"
+                android:orientation="horizontal"
+                app:layout_heightPercent="50%" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_marginTop="1dp"
-        android:layout_height="2dp"
-        android:layout_below="@id/calculator_image"
-        android:background="#585858" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="#000000"
+                app:layout_heightPercent="50%"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
+                android:layout_height="2dp"
+                android:layout_below="@id/calculator_image1"
+                android:background="#585858" />
+
+        </android.support.percent.PercentRelativeLayout>
+    <!--</android.support.v4.widget.SlidingPaneLayout>-->
 </android.support.percent.PercentRelativeLayout>

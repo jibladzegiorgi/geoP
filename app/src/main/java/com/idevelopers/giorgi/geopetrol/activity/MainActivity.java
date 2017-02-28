@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -55,7 +57,8 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
     private ArrayList<PetrolModel> jdoilList;
     private List allList;
     PetrolModel model;
-    RelativeLayout mainRelativ, touchRelativ;
+    RelativeLayout mainRelativ;
+    SlidingPaneLayout touchRelativ;
     RecyclerView recyclerView;
     Fragment fragment;
     InternetFragment internetFragment;
@@ -82,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         fragment = new LoadingFragment();
 
         mainRelativ = (RelativeLayout) findViewById(R.id.main_relativ);
-        touchRelativ = (RelativeLayout) findViewById(R.id.touch_relativ);
+       // touchRelativ = (SlidingPaneLayout) findViewById(R.id.touch_relativ);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(2, 1);
@@ -99,6 +102,10 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         wissolList = new ArrayList();
         jdoilList = new ArrayList();
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+        calculatorFragment = new CalculatorFragment();
 
         makeRequest();
         slidingPaneLayout = (SlidingPaneLayout) findViewById(R.id.sliding_menu);
@@ -143,11 +150,12 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
                 if (slidingPaneLayout.isOpen()) {
                     slidingPaneLayout.closePane();
                 }
-                calculatorFragment = new CalculatorFragment();
-                getSupportFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_from_left_to_right, 0, 0, R.anim.slide_from_right_to_left)
-                        .addToBackStack("tag").add(R.id.fragment_cont, calculatorFragment).commit();
-                fragment_cont.bringToFront();
+                if (!calculatorFragment.isAdded()) {
+                    getSupportFragmentManager().beginTransaction()
+                            .setCustomAnimations(R.anim.slide_from_left_to_right, 0, 0, R.anim.slide_from_right_to_left)
+                            .addToBackStack("tag").add(R.id.main_relativ, calculatorFragment).commit();
+                }
+                //fragment_cont.bringToFront();
                 break;
             case R.id.profile_image:
                 break;
@@ -179,8 +187,8 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         languge_image = (ImageView) findViewById(R.id.languge_image);
         main_relativ = (RelativeLayout) findViewById(R.id.main_relativ);
         sliding_menu = (SlidingPaneLayout) findViewById(R.id.sliding_menu);
-        touch_relativ = (RelativeLayout) findViewById(R.id.touch_relativ);
-        fragment_cont = (RelativeLayout) findViewById(R.id.fragment_cont);
+        touch_relativ = (RelativeLayout) findViewById(R.id.touch_rel);
+        //fragment_cont = (RelativeLayout) findViewById(R.id.fragment_cont);
         //fragment_cont.setOnClickListener(this);
     }
 
@@ -193,6 +201,7 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
 
     public void makeRequest() {
         if (!checkConnection()) {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             internetFragment.show(fragmentManager, "fragment");
         } else {
             new Handler().postDelayed(new Runnable() {
@@ -231,6 +240,7 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
                                                    petrolModelList.add(model);
                                                }
                                                fillListbyCompany(petrolModelList);
+                                               getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                                                //test();
 
                                            } catch (JSONException | IOException e) {
