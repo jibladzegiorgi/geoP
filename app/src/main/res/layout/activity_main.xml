@@ -6,135 +6,153 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    android:paddingTop="35dp">
+    tools:context=".activity.MainActivity">
 
-    <FrameLayout
+
+    <RelativeLayout
         android:id="@+id/fragment_cont"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:elevation="100dp" />
 
-    <LinearLayout
-        android:id="@+id/humburger1"
-        android:layout_width="@dimen/humburger_widht"
-        android:layout_height="5dp"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/humburger_corner"
-        android:orientation="horizontal" />
-
-    <LinearLayout
-        android:id="@+id/humburger2"
-        android:layout_width="@dimen/humburger_widht"
-        android:layout_height="5dp"
-        android:layout_below="@+id/humburger1"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/humburger_corner"
-        android:orientation="horizontal" />
-
-    <LinearLayout
-        android:id="@+id/humburger3"
-        android:layout_width="@dimen/humburger_widht"
-        android:layout_height="5dp"
-        android:layout_below="@id/humburger2"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/humburger_corner"
-        android:orientation="horizontal" />
-
-    <!--<include-->
-    <!--android:id="@+id/toolbar"-->
-    <!--layout="@layout/toolbar" />-->
-
-    <android.support.v4.widget.SlidingPaneLayout
-        android:id="@+id/sliding_menu"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/humburger3"
-        android:layout_marginTop="5dp"
-        tools:context="com.idevelopers.giorgi.geopetrol.activity.MainActivity">
-
-
-        <android.support.percent.PercentRelativeLayout
-            android:id="@+id/activity_main"
-            android:layout_width="130dp"
-            android:layout_height="match_parent"
-            android:background="#000000">
-
-            <ImageView
-                android:id="@+id/main_activity_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/main_image"
-                app:layout_heightPercent="13%"
-                app:layout_widthPercent="53%" />
-
-            <ImageView
-                android:id="@+id/calculator_image"
-                android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/main_activity_image"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/calculator"
-                app:layout_heightPercent="13%"
-                app:layout_widthPercent="53%" />
-
-            <ImageView
-                android:id="@+id/profile_image"
-                android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/calculator_image"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/profile_image"
-                app:layout_heightPercent="13%"
-                app:layout_widthPercent="53%" />
-
-            <ImageView
-                android:id="@+id/languge_image"
-                android:layout_width="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/profile_image"
-                android:src="@drawable/geoimage"
-                app:layout_heightPercent="13%"
-                app:layout_widthPercent="53%" />
-
-        </android.support.percent.PercentRelativeLayout>
-
+        android:paddingTop="35dp">
 
         <RelativeLayout
-            android:id="@+id/main_relativ"
+            android:id="@+id/fragment_cont_"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/humburger1"
+            android:layout_width="@dimen/humburger_widht"
+            android:layout_height="5dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/humburger_corner"
+            android:orientation="horizontal" />
+
+        <LinearLayout
+            android:id="@+id/humburger2"
+            android:layout_width="@dimen/humburger_widht"
+            android:layout_height="5dp"
+            android:layout_below="@+id/humburger1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/humburger_corner"
+            android:orientation="horizontal" />
+
+        <LinearLayout
+            android:id="@+id/humburger3"
+            android:layout_width="@dimen/humburger_widht"
+            android:layout_height="5dp"
+            android:layout_below="@id/humburger2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/humburger_corner"
+            android:orientation="horizontal" />
+
+        <!--<include-->
+        <!--android:id="@+id/toolbar"-->
+        <!--layout="@layout/toolbar" />-->
+
+        <android.support.v4.widget.SlidingPaneLayout
+            android:id="@+id/sliding_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/humburger3"
+            android:layout_marginTop="5dp"
+            tools:context="com.idevelopers.giorgi.geopetrol.activity.MainActivity">
 
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <LinearLayout
-                android:id="@+id/black_fragment"
-                android:layout_width="match_parent"
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/activity_main"
+                android:layout_width="130dp"
                 android:layout_height="match_parent"
-                android:clickable="true"
-                android:orientation="horizontal"
-                android:visibility="invisible" />
-        </RelativeLayout>
-    </android.support.v4.widget.SlidingPaneLayout>
+                android:background="#000000">
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:layout_above="@+id/sliding_menu"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/taripebi" />
+                <ImageView
+                    android:id="@+id/main_activity_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:onClick="slidingPanelImageClick"
+                    android:src="@drawable/main_image"
+                    app:layout_heightPercent="13%"
+                    app:layout_widthPercent="53%" />
+
+                <ImageView
+                    android:id="@+id/calculator_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/main_activity_image"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:onClick="slidingPanelImageClick"
+                    android:src="@drawable/calculator"
+                    app:layout_heightPercent="13%"
+                    app:layout_widthPercent="53%" />
+
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/calculator_image"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:onClick="slidingPanelImageClick"
+                    android:src="@drawable/profile_image"
+                    app:layout_heightPercent="13%"
+                    app:layout_widthPercent="53%" />
+
+                <ImageView
+                    android:id="@+id/languge_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/profile_image"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:onClick="slidingPanelImageClick"
+                    android:src="@drawable/geoimage"
+                    app:layout_heightPercent="13%"
+                    app:layout_widthPercent="53%" />
+
+            </android.support.percent.PercentRelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/main_relativ"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:id="@+id/black_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:orientation="horizontal"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+        </android.support.v4.widget.SlidingPaneLayout>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/sliding_menu"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/taripebi" />
+
+    </RelativeLayout>
 </RelativeLayout>
