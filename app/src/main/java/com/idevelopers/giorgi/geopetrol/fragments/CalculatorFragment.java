@@ -26,7 +26,7 @@ public class CalculatorFragment extends Fragment {
 //        slidingPaneLayout.setPanelSlideListener(slidingPanel);
 
         return view;
-    }
+    }///
 //    SlidingPaneLayout.PanelSlideListener slidingPanel = new SlidingPaneLayout.PanelSlideListener() {
 //        @Override
 //        public void onPanelSlide(View panel, float slideOffset) {

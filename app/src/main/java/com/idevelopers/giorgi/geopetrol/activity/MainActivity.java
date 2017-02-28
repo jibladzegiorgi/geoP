@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         public void onPanelOpened(View panel) {
         }
 
-
+/////
         @Override
         public void onPanelClosed(View panel) {
             linearLayout.setVisibility(View.INVISIBLE);
