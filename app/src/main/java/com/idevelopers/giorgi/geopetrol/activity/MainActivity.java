@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -73,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
     private RelativeLayout touch_relativ;
     private CalculatorFragment calculatorFragment;
     private RelativeLayout fragment_cont;
+    private LinearLayout humburger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         fragment = new LoadingFragment();
 
         mainRelativ = (RelativeLayout) findViewById(R.id.main_relativ);
-       // touchRelativ = (SlidingPaneLayout) findViewById(R.id.touch_relativ);
+        // touchRelativ = (SlidingPaneLayout) findViewById(R.id.touch_relativ);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(2, 1);
@@ -135,7 +135,6 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         public void onPanelOpened(View panel) {
         }
 
-/////
         @Override
         public void onPanelClosed(View panel) {
             linearLayout.setVisibility(View.INVISIBLE);
@@ -190,6 +189,8 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         touch_relativ = (RelativeLayout) findViewById(R.id.touch_rel);
         //fragment_cont = (RelativeLayout) findViewById(R.id.fragment_cont);
         //fragment_cont.setOnClickListener(this);
+        humburger = (LinearLayout) findViewById(R.id.humburger);
+        humburger.bringToFront();
     }
 
 
