@@ -6,68 +6,220 @@
     android:layout_height="match_parent">
 
 
-    <RelativeLayout
+    <android.support.percent.PercentRelativeLayout
         android:id="@+id/calculator_image1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/backgraund_main"
-        android:orientation="horizontal"
-        app:layout_heightPercent="50%">
+        app:layout_heightPercent="55%">
 
-        <LinearLayout
+        <android.support.v7.widget.SwitchCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_marginTop="65dp"
+            android:theme="@style/MySwitch" />
+        <!--android:layout_toEndOf="@+id/town_highway"-->
+        <!--android:layout_toRightOf="@+id/town_highway" -->
+
+
+        <LinearLayout
+            android:id="@+id/town_highway"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:layout_marginTop="65dp"
             android:orientation="horizontal">
 
             <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Town"
                 android:textColor="#FAAC0E"
-                android:textSize="14sp"
-                android:layout_height="wrap_content" />
+                android:textSize="@dimen/calculacor_text_size"/>
 
             <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
                 android:text="/"
                 android:textColor="#FFF"
-                android:textSize="16sp"
-                android:layout_height="wrap_content" />
+                android:textSize="@dimen/calculacor_text_size" />
 
             <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
                 android:layout_width="wrap_content"
-                android:text="Highway"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
+                android:text="Highway"
                 android:textColor="#Fff"
-                android:textSize="14sp"
-                android:layout_height="wrap_content" />
+                android:textSize="@dimen/calculacor_text_size" />
 
         </LinearLayout>
 
-    </RelativeLayout>
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/edit_text_cont"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_below="@+id/town_highway"
+            app:layout_heightPercent="40%">
+
+            <EditText
+                android:id="@+id/distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/calculator_edit_text_style"
+                android:gravity="center"
+                android:hint="Distance (km)"
+                android:maxLines="1"
+                android:textColorHint="#92454242"
+                android:textSize="@dimen/calculacor_text_size"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="60%" />
+
+            <EditText
+                android:id="@+id/fuel_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/distance"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/calculator_edittext_marginTop"
+                android:background="@drawable/calculator_edit_text_style"
+                android:gravity="center"
+                android:hint="Fuel Price (GEL)"
+                android:maxLines="1"
+                android:textColorHint="#92454242"
+                android:textSize="@dimen/calculacor_text_size"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="60%" />
+
+            <EditText
+                android:id="@+id/fuel_consumption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fuel_price"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/calculator_edittext_marginTop"
+                android:background="@drawable/calculator_edit_text_style"
+                android:gravity="center"
+                android:hint="Fuel Consumption (100km)"
+                android:textColorHint="#92454242"
+                android:inputType="textVisiblePassword"
+                android:textSize="@dimen/calculacor_text_size"
+                app:layout_heightPercent="25%"
+                app:layout_widthPercent="60%" />
+        </android.support.percent.PercentRelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/edit_text_cont">
+
+            <RelativeLayout
+                android:layout_width="@dimen/circle_size"
+                android:layout_height="@dimen/circle_size"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/circle_button" >
+
+                <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
+                    android:layout_width="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FAAC0E"
+                    android:text="Calculate"
+                    android:textSize="@dimen/calculacor_text_size"/>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </android.support.percent.PercentRelativeLayout>
 
 
-    <RelativeLayout
+    <android.support.percent.PercentRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="#000000"
-        app:layout_heightPercent="50%" >
+        android:padding="10dp"
+        app:layout_heightPercent="45%">
 
         <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
-            android:layout_marginTop="10dp"
+            android:id="@+id/result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:text="Result"
             android:textColor="#FAAC0E"
-            android:textSize="14sp"
-            android:text="Result"/>
+            android:textSize="@dimen/calculacor_text_size" />
 
-    </RelativeLayout>
+
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/need_fouel_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/result"
+            app:layout_heightPercent="20%">
+
+            <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Neded Fuel"
+                android:textColor="#FAAC0E"
+                android:textSize="@dimen/calculacor_text_size" />
+
+            <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/calculator_text_style"
+                android:gravity="center"
+                android:text="text"
+                android:textSize="@dimen/calculacor_text_size"
+                app:layout_heightPercent="60%"
+                app:layout_widthPercent="40%" />
+
+        </android.support.percent.PercentRelativeLayout>
+
+        <android.support.percent.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/need_fouel_container"
+            app:layout_heightPercent="20%">
+
+            <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Required Amount"
+                android:textColor="#FAAC0E"
+                android:textSize="@dimen/calculacor_text_size" />
+
+            <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/calculator_text_style"
+                android:textSize="@dimen/calculacor_text_size"
+                android:gravity="center"
+                android:text="text"
+                app:layout_heightPercent="60%"
+                app:layout_widthPercent="40%" />
+
+        </android.support.percent.PercentRelativeLayout>
+
+    </android.support.percent.PercentRelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
