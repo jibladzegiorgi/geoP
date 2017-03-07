@@ -11,6 +11,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -21,6 +22,7 @@ import com.idevelopers.giorgi.geopetrol.adapter.PetrolAdapter;
 import com.idevelopers.giorgi.geopetrol.fragments.CalculatorFragment;
 import com.idevelopers.giorgi.geopetrol.fragments.InternetFragment;
 import com.idevelopers.giorgi.geopetrol.fragments.LoadingFragment;
+import com.idevelopers.giorgi.geopetrol.fragments.ProfileFragment;
 import com.idevelopers.giorgi.geopetrol.internetConnection.ConnectivityReceiver;
 import com.idevelopers.giorgi.geopetrol.modelclass.PetrolModel;
 
@@ -45,16 +47,16 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
     SlidingPaneLayout slidingPaneLayout;
     List petrolModelList;
     LinearLayout linearLayout;
-    private ArrayList<PetrolModel> exaList;
-    private ArrayList<PetrolModel> fregoList;
-    private ArrayList<PetrolModel> gulfList;
-    private ArrayList<PetrolModel> lukoilList;
-    private ArrayList<PetrolModel> petrolList;
-    private ArrayList<PetrolModel> rompetrolList;
-    private ArrayList<PetrolModel> socarLIst;
-    private ArrayList<PetrolModel> wissolList;
-    private ArrayList<PetrolModel> jdoilList;
-    private List allList;
+    ArrayList<PetrolModel> exaList;
+    ArrayList<PetrolModel> fregoList;
+    ArrayList<PetrolModel> gulfList;
+    ArrayList<PetrolModel> lukoilList;
+    ArrayList<PetrolModel> petrolList;
+    ArrayList<PetrolModel> rompetrolList;
+    ArrayList<PetrolModel> socarLIst;
+    ArrayList<PetrolModel> wissolList;
+    ArrayList<PetrolModel> jdoilList;
+    public static List allList;
     PetrolModel model;
     RelativeLayout mainRelativ;
     SlidingPaneLayout touchRelativ;
@@ -63,15 +65,10 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
     InternetFragment internetFragment;
     FragmentManager fragmentManager;
     PetrolAdapter petrolAdapter;
-    private ImageView main_activity_image;
-    private ImageView calculator_image;
     private ImageView profile_image;
     private ImageView languge_image;
-    private RelativeLayout main_relativ;
-    private SlidingPaneLayout sliding_menu;
-    private RelativeLayout touch_relativ;
     private CalculatorFragment calculatorFragment;
-    private RelativeLayout fragment_cont;
+    private ProfileFragment profileFragment;
     private LinearLayout humburger;
 
     @Override
@@ -85,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         fragment = new LoadingFragment();
 
         mainRelativ = (RelativeLayout) findViewById(R.id.main_relativ);
-        // touchRelativ = (SlidingPaneLayout) findViewById(R.id.touch_relativ);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(2, 1);
@@ -106,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
         calculatorFragment = new CalculatorFragment();
+        profileFragment = new ProfileFragment();
 
         makeRequest();
         slidingPaneLayout = (SlidingPaneLayout) findViewById(R.id.sliding_menu);
@@ -144,19 +141,52 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
     public void slidingPanelImageClick(View view) {
         switch (view.getId()) {
             case R.id.main_activity_image:
+                if (slidingPaneLayout.isOpen()) {
+                    slidingPaneLayout.closePane();
+                }
+                if (calculatorFragment.isAdded()){
+                    getSupportFragmentManager().beginTransaction()
+                            .setCustomAnimations(R.anim.slide_from_left_to_right, R.anim.slide_from_right_to_left,
+                                    R.anim.slide_from_left_to_right, R.anim.slide_from_right_to_left).remove(calculatorFragment).commit();
+                }
+                if (profileFragment.isAdded()){
+                    getSupportFragmentManager().beginTransaction()
+                            .setCustomAnimations(R.anim.slide_from_left_to_right, R.anim.slide_from_right_to_left,
+                                    R.anim.slide_from_left_to_right, R.anim.slide_from_right_to_left).remove(profileFragment).commit();
+                }
                 break;
             case R.id.calculator_image:
                 if (slidingPaneLayout.isOpen()) {
                     slidingPaneLayout.closePane();
                 }
                 if (!calculatorFragment.isAdded()) {
+                    calculatorFragment=new CalculatorFragment();
                     getSupportFragmentManager().beginTransaction()
-                            .setCustomAnimations(R.anim.slide_from_left_to_right, 0, 0, R.anim.slide_from_right_to_left)
-                            .addToBackStack("tag").add(R.id.main_relativ, calculatorFragment).commit();
+                            .setCustomAnimations(R.anim.slide_from_left_to_right, R.anim.slide_from_right_to_left,
+                                    R.anim.slide_from_left_to_right, R.anim.slide_from_right_to_left)
+                            .addToBackStack("tag").replace(R.id.main_relativ, calculatorFragment).commit();
                 }
                 //fragment_cont.bringToFront();
                 break;
             case R.id.profile_image:
+                if (slidingPaneLayout.isOpen()) {
+                    slidingPaneLayout.closePane();
+                }
+                if (!profileFragment.isAdded()) {
+                    profileFragment=new ProfileFragment();
+                    getSupportFragmentManager().beginTransaction()
+                            .setCustomAnimations(R.anim.slide_from_left_to_right, R.anim.slide_from_right_to_left,
+                                    R.anim.slide_from_left_to_right, R.anim.slide_from_right_to_left)
+                            .addToBackStack("profile").replace(R.id.main_relativ, profileFragment).commit();
+//                    if (calculatorFragment.isAdded()) {
+//                        new Handler().postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                getSupportFragmentManager().beginTransaction().remove(calculatorFragment).commit();
+//                            }
+//                        }, 700);
+//                    }
+                }
                 break;
             case R.id.languge_image:
                 break;
@@ -180,15 +210,8 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
     }
 
     private void initView() {
-        main_activity_image = (ImageView) findViewById(R.id.main_activity_image);
-        calculator_image = (ImageView) findViewById(R.id.calculator_image);
         profile_image = (ImageView) findViewById(R.id.profile_image);
         languge_image = (ImageView) findViewById(R.id.languge_image);
-        main_relativ = (RelativeLayout) findViewById(R.id.main_relativ);
-        sliding_menu = (SlidingPaneLayout) findViewById(R.id.sliding_menu);
-        touch_relativ = (RelativeLayout) findViewById(R.id.touch_rel);
-        //fragment_cont = (RelativeLayout) findViewById(R.id.fragment_cont);
-        //fragment_cont.setOnClickListener(this);
         humburger = (LinearLayout) findViewById(R.id.humburger);
         humburger.bringToFront();
     }

@@ -4,4 +4,6 @@
     <dimen name="calculacor_text_size">10sp</dimen>
     <dimen name="calculator_edittext_corner">10dp</dimen>
     <dimen name="calculator_edittext_marginTop">10dp</dimen>
+    <dimen name="profile_fragment_text_size">14sp</dimen>
+    <dimen name="profile_fragmet_static_text_size">15sp</dimen>
 </resources>

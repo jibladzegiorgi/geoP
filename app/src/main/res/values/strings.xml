@@ -3,4 +3,18 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="test">raghac</string>
+
+    <string-array name="company_name">
+        <item>Exa</item>
+        <item>Frego</item>
+        <item>Gulf</item>
+        <item>Jdoil</item>
+        <item>Lukoil</item>
+        <item>Portal</item>
+        <item>Rompetrol</item>
+        <item>Socar</item>
+        <item>Wissol</item>
+    </string-array>
+
 </resources>

@@ -14,9 +14,13 @@
         app:layout_heightPercent="55%">
 
         <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:textOn="town"
+            android:textOff="highway"
+            app:showText="false"
             android:layout_alignParentRight="true"
             android:layout_marginTop="65dp"
             android:theme="@style/MySwitch" />
@@ -36,6 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Town"
+                android:id="@+id/town"
                 android:textColor="#FAAC0E"
                 android:textSize="@dimen/calculacor_text_size"/>
 
@@ -51,6 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
+                android:id="@+id/highway"
                 android:text="Highway"
                 android:textColor="#Fff"
                 android:textSize="@dimen/calculacor_text_size" />
@@ -74,13 +80,14 @@
                 android:background="@drawable/calculator_edit_text_style"
                 android:gravity="center"
                 android:hint="Distance (km)"
-                android:maxLines="1"
+                android:singleLine="true"
+                android:inputType="number"
                 android:textColorHint="#92454242"
                 android:textSize="@dimen/calculacor_text_size"
                 app:layout_heightPercent="25%"
                 app:layout_widthPercent="60%" />
 
-            <EditText
+            <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
                 android:id="@+id/fuel_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -96,7 +103,7 @@
                 app:layout_heightPercent="25%"
                 app:layout_widthPercent="60%" />
 
-            <EditText
+            <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
                 android:id="@+id/fuel_consumption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -120,6 +127,7 @@
 
             <RelativeLayout
                 android:layout_width="@dimen/circle_size"
+                android:id="@+id/circleButton"
                 android:layout_height="@dimen/circle_size"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
@@ -180,6 +188,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:id="@+id/need_foul"
                 android:layout_centerVertical="true"
                 android:background="@drawable/calculator_text_style"
                 android:gravity="center"
@@ -209,6 +218,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:id="@+id/requiredAmount"
                 android:layout_centerVertical="true"
                 android:background="@drawable/calculator_text_style"
                 android:textSize="@dimen/calculacor_text_size"

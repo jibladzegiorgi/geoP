@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="humburger_widht">50dp</dimen>
+
     <dimen name="circle_size">180dp</dimen>
     <dimen name="calculacor_text_size">16sp</dimen>
     <dimen name="calculator_edittext_corner">15dp</dimen>
     <dimen name="calculator_edittext_marginTop">15dp</dimen>
+
+    <dimen name="profile_fragment_text_size">16sp</dimen>
+    <dimen name="profile_fragmet_static_text_size">17sp</dimen>
 </resources>
