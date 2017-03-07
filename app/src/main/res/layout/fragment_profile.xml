@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgraund_main">
+
+    <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
+        android:id="@+id/choose_company_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="Choose Company"
+        android:textColor="#FAAC0E"
+        android:textSize="@dimen/profile_fragmet_static_text_size" />
+
+    <RelativeLayout
+        android:id="@+id/choose_company_spinner_cont"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/choose_company_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/profile_spinner_style"
+        app:layout_heightPercent="5%"
+        app:layout_widthPercent="55%">
+
+        <Spinner
+            android:id="@+id/choose_company_spinner"
+            android:layout_width="match_parent"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:spinnerMode="dropdown" />
+    </RelativeLayout>
+
+    <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
+        android:id="@+id/choose_fuel_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/choose_company_spinner_cont"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="Choose Fuel"
+        android:textColor="#FAAC0E"
+        android:textSize="@dimen/profile_fragmet_static_text_size" />
+
+    <!--<EditText-->
+    <!--android:id="@+id/choose_fuel"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_below="@id/choose_fuel_text"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_marginTop="15dp"-->
+    <!--android:background="@drawable/profile_spinner_style"-->
+    <!--android:gravity="center"-->
+    <!--android:hint="choose"-->
+    <!--android:textColorHint="#92454242"-->
+    <!--android:textSize="@dimen/profile_fragment_text_size"-->
+    <!--app:layout_heightPercent="5%"-->
+    <!--app:layout_widthPercent="55%" />-->
+
+    <RelativeLayout
+        android:id="@+id/choose_fuel_cont"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/choose_fuel_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/profile_spinner_style"
+        app:layout_heightPercent="5%"
+        app:layout_widthPercent="55%">
+
+        <Spinner
+            android:id="@+id/choose_fuel"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:spinnerMode="dropdown" />
+    </RelativeLayout>
+
+    <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/choose_fuel_cont"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="Specify How Your \n CarFuel Consumption"
+        android:textColor="#FAAC0E"
+        android:textSize="@dimen/profile_fragmet_static_text_size" />
+
+    <EditText
+        android:id="@+id/profile_town"
+        android:layout_below="@id/description"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/profile_text_style"
+        android:gravity="center"
+        android:inputType="number"
+        android:hint="Town(1)"
+        android:textColorHint="#92454242"
+        android:textSize="@dimen/profile_fragment_text_size"
+        android:singleLine="true"
+        app:layout_heightPercent="5%"
+        app:layout_widthPercent="55%" />
+
+    <EditText
+        android:id="@+id/profile_highway"
+        android:layout_below="@id/profile_town"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:inputType="number"
+        android:singleLine="true"
+        android:background="@drawable/profile_text_style"
+        android:gravity="center"
+        android:hint="Highway(1)"
+        android:textColorHint="#92454242"
+        android:textSize="@dimen/profile_fragment_text_size"
+        app:layout_heightPercent="5%"
+        app:layout_widthPercent="55%" />
+
+    <RelativeLayout
+        android:id="@+id/profile_circleButton"
+        android:layout_width="@dimen/circle_size"
+        android:layout_height="@dimen/circle_size"
+        android:layout_below="@+id/profile_highway"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/circle_button">
+
+        <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Save"
+            android:textColor="#FAAC0E"
+            android:textSize="@dimen/calculacor_text_size" />
+
+    </RelativeLayout>
+
+    <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="35dp"
+        android:text="Choose Company"
+        android:textColor="#FAAC0E"
+        android:visibility="invisible" />
+
+    <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:text="Choose Company"
+        android:textColor="#FAAC0E"
+        android:visibility="invisible" />
+
+</android.support.percent.PercentRelativeLayout>
