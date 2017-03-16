@@ -212,7 +212,7 @@ public class PetrolAdapter extends RecyclerView.Adapter<PetrolAdapter.ViewHolder
         return petrolModelList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public  class ViewHolder extends RecyclerView.ViewHolder {
         LinearLayout backgaund;
         TextView petrolCategory, petrolCategory1, petrolCategory2, petrolCategory3, petrolCategory4, petrolCategory5, petrolCategory6,
                 petrolCategory7, petrolCategory8, petrolCategory9, petrolCategory10, petrolCategory11;

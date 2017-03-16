@@ -8,6 +8,7 @@ import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -77,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         setContentView(R.layout.activity_main);
         initView();
 
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
         internetFragment = new InternetFragment();
         fragmentManager = getSupportFragmentManager();
         fragment = new LoadingFragment();
@@ -121,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
     }
 
 
+
     SlidingPaneLayout.PanelSlideListener slidingPanel = new SlidingPaneLayout.PanelSlideListener() {
         @Override
         public void onPanelSlide(View panel, float slideOffset) {
@@ -144,15 +148,15 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
                 if (slidingPaneLayout.isOpen()) {
                     slidingPaneLayout.closePane();
                 }
-                if (calculatorFragment.isAdded()){
+                if (calculatorFragment.isAdded()) {
                     getSupportFragmentManager().beginTransaction()
-                            .setCustomAnimations(R.anim.slide_from_left_to_right, R.anim.slide_from_right_to_left,
-                                    R.anim.slide_from_left_to_right, R.anim.slide_from_right_to_left).remove(calculatorFragment).commit();
+                            .setCustomAnimations(R.anim.slide_from_right_to_left, 0).remove(calculatorFragment)
+                            .commit();
                 }
-                if (profileFragment.isAdded()){
+                if (profileFragment.isAdded()) {
                     getSupportFragmentManager().beginTransaction()
-                            .setCustomAnimations(R.anim.slide_from_left_to_right, R.anim.slide_from_right_to_left,
-                                    R.anim.slide_from_left_to_right, R.anim.slide_from_right_to_left).remove(profileFragment).commit();
+                            .setCustomAnimations(R.anim.slide_from_right_to_left, 0)
+                            .remove(profileFragment).commit();
                 }
                 break;
             case R.id.calculator_image:
@@ -160,11 +164,15 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
                     slidingPaneLayout.closePane();
                 }
                 if (!calculatorFragment.isAdded()) {
-                    calculatorFragment=new CalculatorFragment();
+                    calculatorFragment = new CalculatorFragment();
                     getSupportFragmentManager().beginTransaction()
-                            .setCustomAnimations(R.anim.slide_from_left_to_right, R.anim.slide_from_right_to_left,
-                                    R.anim.slide_from_left_to_right, R.anim.slide_from_right_to_left)
-                            .addToBackStack("tag").replace(R.id.main_relativ, calculatorFragment).commit();
+                            .setCustomAnimations(R.anim.slide_from_left_to_right, 0)
+                            .addToBackStack(null).add(R.id.main_relativ, calculatorFragment).commit();
+
+                    if (profileFragment.isAdded()) {
+                        getSupportFragmentManager().beginTransaction()
+                                .remove(profileFragment).commit();
+                    }
                 }
                 //fragment_cont.bringToFront();
                 break;
@@ -173,19 +181,15 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
                     slidingPaneLayout.closePane();
                 }
                 if (!profileFragment.isAdded()) {
-                    profileFragment=new ProfileFragment();
+                    profileFragment = new ProfileFragment();
                     getSupportFragmentManager().beginTransaction()
-                            .setCustomAnimations(R.anim.slide_from_left_to_right, R.anim.slide_from_right_to_left,
-                                    R.anim.slide_from_left_to_right, R.anim.slide_from_right_to_left)
-                            .addToBackStack("profile").replace(R.id.main_relativ, profileFragment).commit();
-//                    if (calculatorFragment.isAdded()) {
-//                        new Handler().postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                getSupportFragmentManager().beginTransaction().remove(calculatorFragment).commit();
-//                            }
-//                        }, 700);
-//                    }
+                            .setCustomAnimations(R.anim.slide_from_left_to_right, 0)
+                            .addToBackStack(null).add(R.id.main_relativ, profileFragment).commit();
+
+                    if (calculatorFragment.isAdded()) {
+                        getSupportFragmentManager().beginTransaction()
+                                .remove(calculatorFragment).commit();
+                    }
                 }
                 break;
             case R.id.languge_image:
@@ -354,7 +358,6 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
     @Override
     public void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            getSupportFragmentManager().popBackStack();
         } else {
             this.finish();
         }
