@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GeoPetrol</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="test">raghac</string>
+
+    <string-array name="company_name">
+        <item>Exa</item>
+        <item>Frego</item>
+        <item>Gulf</item>
+        <item>Jdoil</item>
+        <item>Lukoil</item>
+        <item>Portal</item>
+        <item>Rompetrol</item>
+        <item>Socar</item>
+        <item>Wissol</item>
+    </string-array>
+
+    //Alert
+    <string name="AlertDialog_title">Error!</string>
+    <string name="AlertDialog_description">Please Check Internet Connection</string>
+
+
+    //calculator frgment
+    <string name="calculator_fragment_town">Town</string>
+    <string name="calculator_fragment_highway">Highway</string>
+    <string name="calculator_fragment_calculate">Result</string>
+    <string name="calculator_fragment_litra">(liter)</string>
+    <string name="calculator_fragment_gel">(GEL)</string>
+    <string name="calculator_fragment_distanc">Distance (km)</string>
+    <string name="calculator_fragment_petrol_price">Fuel Price (GEL)</string>
+    <string name="calculator_fragment_wva">Fuel Consumption (100km)</string>
+    <string name="calculator_fragment_result">Result</string>
+    <string name="calculator_fragment_need_fuel">Needed Fuel</string>
+    <string name="calculator_fragment_need_amount">Required Amount</string>
+
+
+    //profile fragment
+    <string name="profile_fragment_choose_company">Choose Company</string>
+    <string name="profile_fragment_choose_fuel">Choose Fuel</string>
+    <string name="profile_fragment_description">Specify How Your \nCar Fuel Consumption</string>
+    <string name="profile_fragment_save">Save</string>
+    <string name="profile_fragment_town">Town (l)</string>
+    <string name="profile_fragment_highway">Highway (l)</string>
+</resources>

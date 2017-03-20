@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GeoPetrol</string>
+    <string name="AlertDialog_title">შეცდომა!</string>
+    <string name="AlertDialog_description"> გთხოვთ, შეამოწმოთ ინტერნეტთან კავშირი</string>
+
+
+    //calculator frgment
+    <string name="calculator_fragment_town">ქალაქი!</string>
+    <string name="calculator_fragment_highway">ავტობანი</string>
+    <string name="calculator_fragment_calculate">გამოთვლა</string>
+    <string name="calculator_fragment_litra">(ლიტრი)</string>
+    <string name="calculator_fragment_gel">(ლარი)</string>
+    <string name="calculator_fragment_distanc">მანძილი (კმ)</string>
+    <string name="calculator_fragment_petrol_price">საწვავის ფასი (ლ)</string>
+    <string name="calculator_fragment_wva">ავტომობილის წვა (100კმ)</string>
+    <string name="calculator_fragment_result">შედეგი</string>
+    <string name="calculator_fragment_need_fuel">საჭირო საწვავი</string>
+    <string name="calculator_fragment_need_amount">საჭირო თანხა</string>
+
+
+    //profile fragment
+    <string name="profile_fragment_choose_company">აირჩიეთ კომპანია</string>
+    <string name="profile_fragment_choose_fuel">აირჩიეთ საწვავი</string>
+    <string name="profile_fragment_description">მიუთითეთ თქვენი ავტომობილის \n წვა</string>
+    <string name="profile_fragment_save">დამახსოვრება</string>
+    <string name="profile_fragment_town">ქალაქში (ლ)</string>
+    <string name="profile_fragment_highway">ქალაქგარეთ (ლ)</string>
+</resources>

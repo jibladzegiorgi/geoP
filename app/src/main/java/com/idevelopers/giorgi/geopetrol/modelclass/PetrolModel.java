@@ -10,12 +10,12 @@ public class PetrolModel {
     private int id;
     private String company;
     private String product;
-    private double price;
+    private String price;
     private String updated;
     private String category;
     private int imagAdress;
 
-    public PetrolModel(int id, String company, String product, double price, String updated, String category) {
+    public PetrolModel(int id, String company, String product, String price, String updated, String category) {
         this.id = id;
         this.company = company;
         this.product = product;
@@ -49,11 +49,11 @@ public class PetrolModel {
         this.product = product;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

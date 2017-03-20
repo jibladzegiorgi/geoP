@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:text="Choose Company"
+        android:text="@string/profile_fragment_choose_company"
         android:textColor="#FAAC0E"
         android:textSize="@dimen/profile_fragmet_static_text_size" />
 
@@ -22,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:background="@drawable/profile_spinner_style"
-        app:layout_heightPercent="5%"
+        app:layout_heightPercent="6%"
         app:layout_widthPercent="55%">
 
         <Spinner
@@ -41,7 +41,7 @@
         android:layout_below="@+id/choose_company_spinner_cont"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:text="Choose Fuel"
+        android:text="@string/profile_fragment_choose_fuel"
         android:textColor="#FAAC0E"
         android:textSize="@dimen/profile_fragmet_static_text_size" />
 
@@ -66,7 +66,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:background="@drawable/profile_spinner_style"
-        app:layout_heightPercent="5%"
+        app:layout_heightPercent="6%"
         app:layout_widthPercent="55%">
 
         <Spinner
@@ -86,7 +86,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:gravity="center"
-        android:text="Specify How Your \n CarFuel Consumption"
+        android:text="@string/profile_fragment_description"
         android:textColor="#FAAC0E"
         android:textSize="@dimen/profile_fragmet_static_text_size" />
 
@@ -98,11 +98,11 @@
         android:background="@drawable/profile_text_style"
         android:gravity="center"
         android:inputType="number"
-        android:hint="Town(1)"
+        android:hint="@string/profile_fragment_town"
         android:textColorHint="#92454242"
         android:textSize="@dimen/profile_fragment_text_size"
         android:singleLine="true"
-        app:layout_heightPercent="5%"
+        app:layout_heightPercent="6%"
         app:layout_widthPercent="55%" />
 
     <EditText
@@ -114,10 +114,10 @@
         android:singleLine="true"
         android:background="@drawable/profile_text_style"
         android:gravity="center"
-        android:hint="Highway(1)"
+        android:hint="@string/profile_fragment_highway"
         android:textColorHint="#92454242"
         android:textSize="@dimen/profile_fragment_text_size"
-        app:layout_heightPercent="5%"
+        app:layout_heightPercent="6%"
         app:layout_widthPercent="55%" />
 
     <RelativeLayout
@@ -134,7 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Save"
+            android:text="@string/profile_fragment_save"
             android:textColor="#FAAC0E"
             android:textSize="@dimen/calculacor_text_size" />
 
@@ -147,7 +147,6 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="35dp"
-        android:text="Choose Company"
         android:textColor="#FAAC0E"
         android:visibility="invisible" />
 
@@ -157,7 +156,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:text="Choose Company"
         android:textColor="#FAAC0E"
         android:visibility="invisible" />
 

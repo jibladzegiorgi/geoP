@@ -39,7 +39,7 @@
             <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Town"
+                android:text="@string/calculator_fragment_town"
                 android:id="@+id/town"
                 android:textColor="#FAAC0E"
                 android:textSize="@dimen/calculacor_text_size"/>
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
                 android:id="@+id/highway"
-                android:text="Highway"
+                android:text="@string/calculator_fragment_highway"
                 android:textColor="#Fff"
                 android:textSize="@dimen/calculacor_text_size" />
 
@@ -79,7 +79,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/calculator_edit_text_style"
                 android:gravity="center"
-                android:hint="Distance (km)"
+                android:hint="@string/calculator_fragment_distanc"
                 android:singleLine="true"
                 android:inputType="number"
                 android:textColorHint="#92454242"
@@ -96,7 +96,7 @@
                 android:layout_marginTop="@dimen/calculator_edittext_marginTop"
                 android:background="@drawable/calculator_edit_text_style"
                 android:gravity="center"
-                android:hint="Fuel Price (GEL)"
+                android:hint="@string/calculator_fragment_petrol_price"
                 android:maxLines="1"
                 android:textColorHint="#92454242"
                 android:textSize="@dimen/calculacor_text_size"
@@ -112,7 +112,7 @@
                 android:layout_marginTop="@dimen/calculator_edittext_marginTop"
                 android:background="@drawable/calculator_edit_text_style"
                 android:gravity="center"
-                android:hint="Fuel Consumption (100km)"
+                android:hint="@string/calculator_fragment_wva"
                 android:textColorHint="#92454242"
                 android:inputType="textVisiblePassword"
                 android:textSize="@dimen/calculacor_text_size"
@@ -139,7 +139,7 @@
                     android:layout_centerVertical="true"
                     android:layout_height="wrap_content"
                     android:textColor="#FAAC0E"
-                    android:text="Calculate"
+                    android:text="@string/calculator_fragment_calculate"
                     android:textSize="@dimen/calculacor_text_size"/>
 
             </RelativeLayout>
@@ -163,7 +163,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Result"
+            android:text="@string/calculator_fragment_result"
             android:textColor="#FAAC0E"
             android:textSize="@dimen/calculacor_text_size" />
 
@@ -179,7 +179,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="Neded Fuel"
+                android:text="@string/calculator_fragment_need_fuel"
                 android:textColor="#FAAC0E"
                 android:textSize="@dimen/calculacor_text_size" />
 
@@ -192,7 +192,6 @@
                 android:layout_centerVertical="true"
                 android:background="@drawable/calculator_text_style"
                 android:gravity="center"
-                android:text="text"
                 android:textSize="@dimen/calculacor_text_size"
                 app:layout_heightPercent="60%"
                 app:layout_widthPercent="40%" />
@@ -209,7 +208,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="Required Amount"
+                android:text="@string/calculator_fragment_need_amount"
                 android:textColor="#FAAC0E"
                 android:textSize="@dimen/calculacor_text_size" />
 
@@ -223,7 +222,6 @@
                 android:background="@drawable/calculator_text_style"
                 android:textSize="@dimen/calculacor_text_size"
                 android:gravity="center"
-                android:text="text"
                 app:layout_heightPercent="60%"
                 app:layout_widthPercent="40%" />
 
