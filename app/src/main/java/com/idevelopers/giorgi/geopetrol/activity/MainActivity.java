@@ -1,6 +1,10 @@
 package com.idevelopers.giorgi.geopetrol.activity;
 
+import android.app.Activity;
+import android.app.Service;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,20 +15,20 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.idevelopers.giorgi.geopetrol.MyApplication;
 import com.idevelopers.giorgi.geopetrol.R;
 import com.idevelopers.giorgi.geopetrol.adapter.PetrolAdapter;
-import com.idevelopers.giorgi.geopetrol.customview.PetrolCategory;
 import com.idevelopers.giorgi.geopetrol.fragments.CalculatorFragment;
 import com.idevelopers.giorgi.geopetrol.fragments.InternetFragment;
 import com.idevelopers.giorgi.geopetrol.fragments.LanguageFragment;
@@ -52,6 +56,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public class MainActivity extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
+    SharedPreferences sharedpreferences;
     SlidingPaneLayout slidingPaneLayout;
     List petrolModelList;
     LinearLayout linearLayout;
@@ -79,11 +84,17 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
     private ProfileFragment profileFragment;
     private LinearLayout humburger;
     private LanguageFragment languageFragment;
+    private AdView adView;
+    int counter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String languageToLoad = "ka";
+
+        sharedpreferences = getSharedPreferences("Save_info",
+                Context.MODE_PRIVATE);
+
+        String languageToLoad = getLanguageInfo();
         Locale locale = new Locale(languageToLoad);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
@@ -93,6 +104,11 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         this.setContentView(R.layout.activity_main);
         //setContentView(R.layout.activity_main);
         initView();
+
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        MobileAds.initialize(this, "ca-app-pub-1815298938675761~4375968334");
+        adView.loadAd(adRequest);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
@@ -140,12 +156,37 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         });
     }
 
+    private String getLanguageInfo() {
+        if (sharedpreferences.contains("language")) {
+            return sharedpreferences.getString("language", " ");
+        }
+        return "ka";
+    }
+
+    private int getcounterInfo() {
+        if (sharedpreferences.contains("chartvis_raodenoba")) {
+            return sharedpreferences.getInt("chartvis_raodenoba", 0);
+        }
+        return 0;
+    }
+
+    private void saveInfo(int counter) {
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putInt("chartvis_raodenoba", ++counter);
+        editor.apply();
+    }
+
 
     SlidingPaneLayout.PanelSlideListener slidingPanel = new SlidingPaneLayout.PanelSlideListener() {
         @Override
         public void onPanelSlide(View panel, float slideOffset) {
             panel.setAlpha((float) (1 - (slideOffset / 1.5)));
             linearLayout.setVisibility(View.VISIBLE);
+
+            InputMethodManager inputManager = (InputMethodManager) MainActivity.this.getSystemService(
+                    Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow( MainActivity.this.getCurrentFocus().getWindowToken(),
+                    InputMethodManager.HIDE_NOT_ALWAYS);
         }
 
         @Override
@@ -161,27 +202,29 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
     public void slidingPanelImageClick(View view) {
         switch (view.getId()) {
             case R.id.main_activity_image:
+                removeFragments();
                 if (slidingPaneLayout.isOpen()) {
                     slidingPaneLayout.closePane();
                 }
-                if (calculatorFragment.isAdded()) {
-                    getSupportFragmentManager().beginTransaction()
-                            .setCustomAnimations(R.anim.slide_from_right_to_left, 0)
-                            .remove(calculatorFragment)
-                            .commit();
-                }
-                if (profileFragment.isAdded()) {
-                    getSupportFragmentManager().beginTransaction()
-                            .setCustomAnimations(R.anim.slide_from_right_to_left, 0)
-                            .remove(profileFragment).commit();
-                }
-                if (languageFragment.isAdded()) {
-                    getSupportFragmentManager().beginTransaction()
-                            .setCustomAnimations(R.anim.slide_from_right_to_left, 0)
-                            .remove(languageFragment).commit();
-                }
+//                if (calculatorFragment.isAdded()) {
+//                    getSupportFragmentManager().beginTransaction()
+//                            .setCustomAnimations(R.anim.slide_from_right_to_left, 0)
+//                            .remove(calculatorFragment)
+//                            .commit();
+//                }
+//                if (profileFragment.isAdded()) {
+//                    getSupportFragmentManager().beginTransaction()
+//                            .setCustomAnimations(R.anim.slide_from_right_to_left, 0)
+//                            .remove(profileFragment).commit();
+//                }
+//                if (languageFragment.isAdded()) {
+//                    getSupportFragmentManager().beginTransaction()
+//                            .setCustomAnimations(R.anim.slide_from_right_to_left, 0)
+//                            .remove(languageFragment).commit();
+//                }
                 break;
             case R.id.calculator_image:
+                saveInfo(getcounterInfo());
                 if (slidingPaneLayout.isOpen()) {
                     slidingPaneLayout.closePane();
                 }
@@ -191,18 +234,12 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
                             .setCustomAnimations(R.anim.slide_from_left_to_right, 0)
                             .addToBackStack(null).add(R.id.main_relativ, calculatorFragment).commit();
 
-                    if (profileFragment.isAdded()) {
-                        getSupportFragmentManager().beginTransaction()
-                                .remove(profileFragment).commit();
-                    }
-                    if (languageFragment.isAdded()) {
-                        getSupportFragmentManager().beginTransaction()
-                                .remove(languageFragment).commit();
-                    }
+                    removeFragments();
                 }
                 //fragment_cont.bringToFront();
                 break;
             case R.id.profile_image:
+                saveInfo(getcounterInfo());
                 if (slidingPaneLayout.isOpen()) {
                     slidingPaneLayout.closePane();
                 }
@@ -212,14 +249,7 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
                             .setCustomAnimations(R.anim.slide_from_left_to_right, 0)
                             .addToBackStack(null).add(R.id.main_relativ, profileFragment).commit();
 
-                    if (calculatorFragment.isAdded()) {
-                        getSupportFragmentManager().beginTransaction()
-                                .remove(calculatorFragment).commit();
-                    }
-                    if (languageFragment.isAdded()) {
-                        getSupportFragmentManager().beginTransaction()
-                                .remove(languageFragment).commit();
-                    }
+                    removeFragments();
                 }
                 break;
             case R.id.languge_image:
@@ -230,18 +260,24 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
                     profileFragment = new ProfileFragment();
                     getSupportFragmentManager().beginTransaction()
                             .setCustomAnimations(R.anim.slide_from_left_to_right, 0)
-                            .addToBackStack(null).add(R.id.main_relativ, languageFragment).commit();
+                            .addToBackStack("tag").replace(R.id.main_relativ, languageFragment).commit();
 
-                    if (calculatorFragment.isAdded()) {
-                        getSupportFragmentManager().beginTransaction()
-                                .remove(calculatorFragment).commit();
-                    }
-                    if (profileFragment.isAdded()) {
-                        getSupportFragmentManager().beginTransaction()
-                                .remove(profileFragment).commit();
-                    }
+                    removeFragments();
                 }
                 break;
+        }
+    }
+
+    private void removeFragments() {
+        List<Fragment> al = getSupportFragmentManager().getFragments();
+
+        for (Fragment frag : al)
+        {
+            if (frag == null) {
+                // code that handles no existing fragments
+                return;
+            }
+            getSupportFragmentManager().beginTransaction().remove(frag).commit();
         }
     }
 
@@ -254,6 +290,9 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
     protected void onResume() {
         super.onResume();
         MyApplication.getInstance().setConnectivityListener(this);
+        if (adView != null) {
+            adView.resume();
+        }
     }
 
     @Override
@@ -270,11 +309,17 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         humburger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager inputManager = (InputMethodManager) MainActivity.this.getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow( MainActivity.this.getCurrentFocus().getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
+
                 if (slidingPaneLayout.isOpen())
                     slidingPaneLayout.closePane();
                 else slidingPaneLayout.openPane();
             }
         });
+        adView = (AdView) findViewById(R.id.adView);
     }
 
 

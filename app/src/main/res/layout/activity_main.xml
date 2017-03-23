@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:id="@+id/touch_rel"
     android:background="#000000">
 
@@ -140,7 +141,16 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
+                    android:layout_above="@+id/adView"
                     android:layout_height="match_parent" />
+
+                <com.google.android.gms.ads.AdView
+                    android:id="@+id/adView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ads:adSize="BANNER"
+                    android:layout_alignParentBottom="true"
+                    ads:adUnitId="@string/banner_home_footer"/>
 
                 <RelativeLayout
                     android:id="@+id/fragment_cont_"

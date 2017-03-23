@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -18,6 +21,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.idevelopers.giorgi.geopetrol.R;
 import com.idevelopers.giorgi.geopetrol.activity.MainActivity;
 import com.idevelopers.giorgi.geopetrol.customview.PetrolCategory;
@@ -54,6 +60,8 @@ public class ProfileFragment extends Fragment {
     private int chooseFuelCategoryPosition;
     private Map<String, String> chooseFuelPrice;
     int color = Color.parseColor("#92454242");
+    private InterstitialAd mInterstitialAd;
+    private AdRequest adRequest;
 
     @Nullable
     @Override
@@ -62,6 +70,16 @@ public class ProfileFragment extends Fragment {
                 Context.MODE_PRIVATE);
 
         View view = inflater.inflate(R.layout.fragment_profile, null);
+        if (sharedpreferences.contains("chartvis_raodenoba")) {
+            if (sharedpreferences.getInt("chartvis_raodenoba", 0) % 4 == 0 &&
+                    sharedpreferences.getInt("chartvis_raodenoba", 0) != 0)
+                fullBaner();
+        }
+        InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow( getActivity().getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
+
         initView(view);
         return view;
     }
@@ -83,6 +101,21 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 saveInfo();
+            }
+        });
+        profile_highway.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    // Do whatever you want here
+                    if (submit()) {
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .setCustomAnimations(R.anim.slide_from_left_to_right, 0)
+                                .addToBackStack(null).replace(R.id.main_relativ, new CalculatorFragment()).commit();
+                    }
+                    return true;
+                }
+                return false;
             }
         });
     }
@@ -118,7 +151,7 @@ public class ProfileFragment extends Fragment {
                     if (company.equals(name)) {
                         chooseFuelList = new ArrayList<>();
                         chooseFuelPrice = new HashMap();
-                        Toast.makeText(getContext(), company + name, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), company + name, Toast.LENGTH_SHORT).show();
                         for (PetrolModel p : petrolModel) {
                             chooseFuelPrice.put(p.getProduct(), String.valueOf(p.getPrice()));
                             chooseFuelList.add(String.valueOf(p.getProduct()));
@@ -167,6 +200,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void getSharedInfo() {
+
         if (sharedpreferences.contains("choose_company_id")) {
             choose_company_spinner.setSelection(sharedpreferences.getInt("choose_company_id", 0));
         }
@@ -180,6 +214,57 @@ public class ProfileFragment extends Fragment {
         }
     }
 
+    private void fullBaner() {
+        mInterstitialAd = new InterstitialAd(getContext());
+
+        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
+
+        adRequest = new AdRequest.Builder()
+                .build();
+
+        mInterstitialAd.loadAd(adRequest);
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                super.onAdLeftApplication();
+            }
+
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                if (mInterstitialAd.isLoaded())
+                    mInterstitialAd.show();
+            }
+        });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    private void showInterstitial() {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
+    }
+
     public void saveInfo() {
         if (submit()) {
             SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -189,8 +274,11 @@ public class ProfileFragment extends Fragment {
             editor.putString("highway", highway); //wva qalqgaret
             editor.putInt("fuel_category_id", chooseFuelCategoryPosition); //meore spineris sawvavis kategoriis pozicia listshi
             editor.putString("choose_fuel", (String) chooseFuel.getText()); //sawvavis tipi
-            Toast.makeText(getContext(), "warmatebit sheinaxa", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(getContext(), "warmatebit sheinaxa", Toast.LENGTH_SHORT).show();
             editor.apply();
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .setCustomAnimations(R.anim.slide_from_left_to_right, 0)
+                    .addToBackStack(null).replace(R.id.main_relativ, new CalculatorFragment()).commit();
         }
     }
 
@@ -198,13 +286,13 @@ public class ProfileFragment extends Fragment {
         // validate
         town = profile_town.getText().toString().trim();
         if (TextUtils.isEmpty(town)) {
-            Toast.makeText(getContext(), "Town(1) carielia", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.profiile_fragment_toast , Toast.LENGTH_SHORT).show();
             return false;
         }
 
         highway = profile_highway.getText().toString().trim();
         if (TextUtils.isEmpty(highway)) {
-            Toast.makeText(getContext(), "Highway(1) carielia", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.profiile_fragment_toast , Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

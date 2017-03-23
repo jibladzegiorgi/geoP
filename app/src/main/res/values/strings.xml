@@ -5,6 +5,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="test">raghac</string>
 
+    <string name="banner_home_footer">ca-app-pub-1815298938675761/5852701539</string>
+    <string name="interstitial_full_screen">ca-app-pub-1815298938675761/8806167930</string>
+
+
     <string-array name="company_name">
         <item>Exa</item>
         <item>Frego</item>

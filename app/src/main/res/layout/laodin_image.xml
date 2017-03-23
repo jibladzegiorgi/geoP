@@ -6,12 +6,12 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:id="@+id/ciferblati"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:src="@drawable/ciferblati"
-        android:layout_height="100dp" />
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:layout_width="80dp"
@@ -20,5 +20,15 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/isari"
         android:layout_height="80dp" />
+
+    <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
+        android:layout_width="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:text="jhkhkbhj"
+        android:id="@+id/loading"
+        android:layout_below="@+id/ciferblati"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

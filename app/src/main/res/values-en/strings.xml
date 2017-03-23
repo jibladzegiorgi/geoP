@@ -20,7 +20,14 @@
     //Alert
     <string name="AlertDialog_title">Error!</string>
     <string name="AlertDialog_description">Please Check Internet Connection</string>
+    <string name="AlertDialog_description_claculator_fraagment">Please Fill Distance Info, Which You\'ll Drive</string>
+    <string name="AlertDialog_title_claculator_fraagment">Attention!!!</string>
+    <string name="AlertDialog_claculator_fraagment_profil_fill">Using Applications Full Service Please Fill Personal Information</string>
+    <string name="AlertDialog_negativ_button_claculator_fraagment">Close</string>
+    <string name="AlertDialog_positiv_button_claculator_fraagment">Fill It</string>
 
+    //toast
+    <string name="profiile_fragment_toast">Please Fill Personal Information</string>
 
     //calculator frgment
     <string name="calculator_fragment_town">Town</string>
@@ -43,4 +50,7 @@
     <string name="profile_fragment_save">Save</string>
     <string name="profile_fragment_town">Town (l)</string>
     <string name="profile_fragment_highway">Highway (l)</string>
+
+    //lading
+    <string name="profile_fragment_lading">Loading . . .</string>
 </resources>

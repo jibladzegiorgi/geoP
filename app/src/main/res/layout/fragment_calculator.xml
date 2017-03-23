@@ -18,12 +18,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:textOn="town"
-            android:textOff="highway"
-            app:showText="false"
             android:layout_alignParentRight="true"
             android:layout_marginTop="65dp"
-            android:theme="@style/MySwitch" />
+            android:textOff="highway"
+            android:textOn="town"
+            android:theme="@style/MySwitch"
+            app:showText="false" />
         <!--android:layout_toEndOf="@+id/town_highway"-->
         <!--android:layout_toRightOf="@+id/town_highway" -->
 
@@ -37,12 +37,12 @@
             android:orientation="horizontal">
 
             <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
+                android:id="@+id/town"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/calculator_fragment_town"
-                android:id="@+id/town"
                 android:textColor="#FAAC0E"
-                android:textSize="@dimen/calculacor_text_size"/>
+                android:textSize="@dimen/calculacor_text_size" />
 
             <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
                 android:layout_width="wrap_content"
@@ -53,10 +53,10 @@
                 android:textSize="@dimen/calculacor_text_size" />
 
             <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
+                android:id="@+id/highway"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
-                android:id="@+id/highway"
                 android:text="@string/calculator_fragment_highway"
                 android:textColor="#Fff"
                 android:textSize="@dimen/calculacor_text_size" />
@@ -67,8 +67,8 @@
             android:id="@+id/edit_text_cont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
             android:layout_below="@+id/town_highway"
+            android:layout_marginTop="3dp"
             app:layout_heightPercent="40%">
 
             <EditText
@@ -80,8 +80,9 @@
                 android:background="@drawable/calculator_edit_text_style"
                 android:gravity="center"
                 android:hint="@string/calculator_fragment_distanc"
-                android:singleLine="true"
+                android:imeOptions="actionDone"
                 android:inputType="number"
+                android:singleLine="true"
                 android:textColorHint="#92454242"
                 android:textSize="@dimen/calculacor_text_size"
                 app:layout_heightPercent="25%"
@@ -113,8 +114,8 @@
                 android:background="@drawable/calculator_edit_text_style"
                 android:gravity="center"
                 android:hint="@string/calculator_fragment_wva"
-                android:textColorHint="#92454242"
                 android:inputType="textVisiblePassword"
+                android:textColorHint="#92454242"
                 android:textSize="@dimen/calculacor_text_size"
                 app:layout_heightPercent="25%"
                 app:layout_widthPercent="60%" />
@@ -126,21 +127,21 @@
             android:layout_below="@id/edit_text_cont">
 
             <RelativeLayout
-                android:layout_width="@dimen/circle_size"
                 android:id="@+id/circleButton"
+                android:layout_width="@dimen/circle_size"
                 android:layout_height="@dimen/circle_size"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/circle_button" >
+                android:background="@drawable/circle_button">
 
                 <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:layout_height="wrap_content"
-                    android:textColor="#FAAC0E"
                     android:text="@string/calculator_fragment_calculate"
-                    android:textSize="@dimen/calculacor_text_size"/>
+                    android:textColor="#FAAC0E"
+                    android:textSize="@dimen/calculacor_text_size" />
 
             </RelativeLayout>
         </RelativeLayout>
@@ -184,11 +185,11 @@
                 android:textSize="@dimen/calculacor_text_size" />
 
             <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
+                android:id="@+id/need_foul"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:id="@+id/need_foul"
                 android:layout_centerVertical="true"
                 android:background="@drawable/calculator_text_style"
                 android:gravity="center"
@@ -213,15 +214,15 @@
                 android:textSize="@dimen/calculacor_text_size" />
 
             <com.idevelopers.giorgi.geopetrol.customview.PetrolCategory
+                android:id="@+id/requiredAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:id="@+id/requiredAmount"
                 android:layout_centerVertical="true"
                 android:background="@drawable/calculator_text_style"
-                android:textSize="@dimen/calculacor_text_size"
                 android:gravity="center"
+                android:textSize="@dimen/calculacor_text_size"
                 app:layout_heightPercent="60%"
                 app:layout_widthPercent="40%" />
 

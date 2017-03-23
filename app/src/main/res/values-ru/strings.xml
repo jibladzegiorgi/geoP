@@ -1,4 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">GeoPetrol</string>
+
+    //Alert
+    <string name="AlertDialog_title">Ошибка!</string>
+    <string name="AlertDialog_description">Пожалуйста, Проверьте Соединения С Интернетом</string>
+    <string name="AlertDialog_description_claculator_fraagment">Расстояние, Которое Вы Должны Пройти</string>
+    <string name="AlertDialog_title_claculator_fraagment">Внимание!!!</string>
+    <string name="AlertDialog_negativ_button_claculator_fraagment">Закрыть</string>
+    <string name="AlertDialog_positiv_button_claculator_fraagment">Заполнить</string>
+    <string name="AlertDialog_claculator_fraagment_profil_fill">Чтобы Использовать Приложение по Полной, Заполните Персональную Информацию</string>
+
+    //toast
+    <string name="profiile_fragment_toast">Заполните Персональную Информацию</string>
+
+
+    //calculator frgment
+    <string name="calculator_fragment_town">Город!</string>
+    <string name="calculator_fragment_highway">Шоссе</string>
+    <string name="calculator_fragment_calculate">Подсчитать</string>
+    <string name="calculator_fragment_litra">(Литр)</string>
+    <string name="calculator_fragment_gel">(GEL)</string>
+    <string name="calculator_fragment_distanc">Расстояние (км)</string>
+    <string name="calculator_fragment_petrol_price">Цена Топлива (GEL)</string>
+    <string name="calculator_fragment_wva">Расход Топлива (100 км)</string>
+    <string name="calculator_fragment_result">Результат</string>
+    <string name="calculator_fragment_need_fuel">Количество Топлива</string>
+    <string name="calculator_fragment_need_amount">Сумма</string>
+
+
+    //profile fragment
+    <string name="profile_fragment_choose_company">Выбрать Компанию</string>
+    <string name="profile_fragment_choose_fuel">Выберите Топливо</string>
+    <string name="profile_fragment_description">Укажите, Как Ваш\nАвтомобиль Расход Топлива</string>
+    <string name="profile_fragment_save">Запомнить</string>
+    <string name="profile_fragment_town">Город (l)</string>
+    <string name="profile_fragment_highway">Шоссе (l)</string>
+
+    //loading
+    <string name="profile_fragment_lading">Загружается . . .</string>
 </resources>

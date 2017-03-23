@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">GeoPetrol</string>
+
+    //Alert
     <string name="AlertDialog_title">შეცდომა!</string>
     <string name="AlertDialog_description"> გთხოვთ, შეამოწმოთ ინტერნეტთან კავშირი</string>
+    <string name="AlertDialog_description_claculator_fraagment">გთხოვთ შეიყვანოთ გასავლელი მანძილი</string>
+    <string name="AlertDialog_title_claculator_fraagment">ყურადღება!!!</string>
+    <string name="AlertDialog_claculator_fraagment_profil_fill">აპლიკაციის სრული გამოყენებისთვის გთხოვთ შეავსოთ პირადი მონაცემები</string>
+    <string name="AlertDialog_negativ_button_claculator_fraagment">გათიშვა</string>
+    <string name="AlertDialog_positiv_button_claculator_fraagment">შევსება</string>
 
+    //toast
+    <string name="profiile_fragment_toast">გთხოვთ შეავსოთ პირადი მონაცემები</string>
 
     //calculator frgment
     <string name="calculator_fragment_town">ქალაქი!</string>
@@ -26,4 +35,8 @@
     <string name="profile_fragment_save">დამახსოვრება</string>
     <string name="profile_fragment_town">ქალაქში (ლ)</string>
     <string name="profile_fragment_highway">ქალაქგარეთ (ლ)</string>
+
+    //lading
+    <string name="profile_fragment_lading">იტვირთება . . .</string>
+
 </resources>
